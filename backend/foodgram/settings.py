@@ -55,7 +55,7 @@ DJOSER = {
     'SERIALIZERS': {
         'user_create': 'api.serializers.DjoserUserCreateSerializer',
         'user': 'api.serializers.DjoserUserViewSet',
-        'current_user': 'api.serializers.DjoserUserViewSet',
+        'current_user': 'api.serializers.DjoserUserSerializer',
     },
     'PERMISSIONS': {
         'user': ['djoser.permissions.CurrentUserOrAdminOrReadOnly'],
