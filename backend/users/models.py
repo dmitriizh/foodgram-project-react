@@ -2,19 +2,20 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 from api import validators
+from api.constants import LENGTH_EMAIL, LENGTH_USER_NAME
 
 
 class User(AbstractUser):
 
     email = models.EmailField(
         verbose_name='Email',
-        max_length=200,
+        max_length=LENGTH_EMAIL,
         unique=True,
         help_text='Введите адрес электронной почты.',
     )
     username = models.CharField(
         verbose_name='Ник',
-        max_length=100,
+        max_length=LENGTH_USER_NAME,
         unique=True,
         help_text='Введите ник пользователя',
         validators=(
@@ -23,17 +24,17 @@ class User(AbstractUser):
     )
     first_name = models.CharField(
         verbose_name='Имя',
-        max_length=100,
+        max_length=LENGTH_USER_NAME,
         help_text='Введите свое имя',
     )
     last_name = models.CharField(
         verbose_name='Фамилия',
-        max_length=100,
+        max_length=LENGTH_USER_NAME,
         help_text='Введите свою фамилию',
     )
     password = models.CharField(
         verbose_name='Пароль',
-        max_length=100,
+        max_length=LENGTH_USER_NAME,
         help_text='Введите свой пароль'
 
     )

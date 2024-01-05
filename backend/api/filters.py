@@ -5,11 +5,9 @@ from recipes.models import Ingredient, Recipe, Tag
 
 
 def get_queryset_filter(queryset, user, value, relation):
-    if user.is_anonymous:
+    if user.is_anonymous or not value:
         return queryset
-    if bool(value):
-        return queryset.filter(**{relation: user})
-    return queryset.exclude(**{relation: user})
+    return queryset.filter(**{relation: user})
 
 
 class IngredientFilter(FilterSet):
@@ -24,6 +22,9 @@ class IngredientFilter(FilterSet):
         return queryset.filter(
             Q(name__startswith=value) | Q(name__contains=value)
         )
+    
+    def filter(self, queryset, *args, **kwargs):
+        return super().filter(queryset, *args, **kwargs)
 
 
 class RecipeFilter(FilterSet):
