@@ -22,7 +22,7 @@ class IngredientFilter(FilterSet):
         return queryset.filter(
             Q(name__startswith=value) | Q(name__contains=value)
         )
-    
+
     def filter(self, queryset, *args, **kwargs):
         return super().filter(queryset, *args, **kwargs)
 

@@ -81,7 +81,8 @@ class SubscriptionSerializer(DjoserUserSerializer):
         except (ValueError, TypeError):
             recipes_limit_int = None
 
-        recipes = obj.recipe_author.all()[:recipes_limit_int]if recipes_limit_int else obj.recipe_author.all()
+        recipes = obj.recipe_author.all()[:recipes_limit_int] \
+            if recipes_limit_int else obj.recipe_author.all()
         return RecipeShortSerializer(recipes, many=True, read_only=True).data
 
     def validate(self, data):
